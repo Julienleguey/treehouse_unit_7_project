@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import {
   BrowserRouter,
+  Route,
+  Switch,
+  Redirect
 } from 'react-router-dom';
 import './App.css';
 import './css/index.css';
@@ -10,6 +13,8 @@ import axios from 'axios';
 import apiKey from './config';
 import Header from './components/Header';
 import Gallery from './components/Gallery';
+import NotFound from './components/NotFound';
+
 
 class App extends Component {
 
@@ -38,9 +43,9 @@ class App extends Component {
   // useful for the nav buttons
   handleClick = () => {
 
-    let title = window.location.pathname.slice(1);
+    let title = window.location.pathname.slice(5);
 
-    axios.get(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${window.location.pathname}&per_page=24&format=json&nojsoncallback=1`)
+    axios.get(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${title}&per_page=24&format=json&nojsoncallback=1`)
       .then (response => {
         this.setState({
           images: response.data.photos.photo,
@@ -58,7 +63,12 @@ class App extends Component {
       <BrowserRouter>
         <div className="container">
           <Header onSearch={this.search} onNavClick={this.handleClick}/>
-          <Gallery data={this.state.images} title={this.state.searchKey} />
+          <Switch>
+            <Route path="/search" render={ () => <Gallery data={this.state.images} title={this.state.searchKey} /> }/>
+            <Route path="/search" render={<Redirect to={`/search/${this.state.searchKey}`} />} />
+            <Route path="/nav/:searchTerm" render={ () => <Gallery data={this.state.images} title={this.state.searchKey} /> }/>
+            <Route component={NotFound} />
+          </Switch>
         </div>
       </BrowserRouter>
     );
@@ -66,11 +76,3 @@ class App extends Component {
 }
 
 export default App;
-
-
-// la logique du bouton, c'est : on clique sur un bouton, ça redirige sur la page avec le nom du bouton dans l'url, ça utilise l'api pour afficher les résultats et on passe le nom du bouton pour le title dans Gallery
-// est-ce qye c'est Nav qui return Gallery ou est-ce que c'est App ? Ca change tout pour passer le titre.
-
-// Comment mettre props et {match} dans un même component ?
-
-// Pour la recherche, comment rediriger vers une nouvelle url (avec le terme recherché dedans) ?

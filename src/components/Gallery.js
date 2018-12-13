@@ -5,7 +5,7 @@
 import React from 'react';
 import Item from './Item';
 
-const Gallery = (props) => {
+const Gallery = (props, {match}) => {
 
   const results = props.data;
   let images = results.map(image =>

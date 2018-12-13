@@ -40,10 +40,8 @@ export default class Search extends Component {
             </svg>
           </button>
         </form>
-        <Redirect exact to={this.state.searchText} />
+
       </div>
-
-
 
     );
   }

@@ -8,9 +8,9 @@ const Nav = props => (
   <div>
     <nav className="main-nav">
       <ul>
-        <li onClick={props.onNavClick}><NavLink exact to='/rain'>Rain</NavLink></li>
-        <li onClick={props.onNavClick}><NavLink exact to='/cats'>Cats</NavLink></li>
-        <li onClick={props.onNavClick}><NavLink exact to='/dogs'>Dogs</NavLink></li>
+        <li onClick={props.onNavClick}><NavLink exact to='/nav/rain'>Rain</NavLink></li>
+        <li onClick={props.onNavClick}><NavLink exact to='/nav/cats'>Cats</NavLink></li>
+        <li onClick={props.onNavClick}><NavLink exact to='/nav/dogs'>Dogs</NavLink></li>
       </ul>
     </nav>
 
