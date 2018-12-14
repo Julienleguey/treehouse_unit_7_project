@@ -139,6 +139,3 @@ class App extends Component {
 }
 
 export default App;
-
-//gros problème : quand on revient en arrière avec les flèches du navigateur, ça ne remet pas les bons résultats. Il faut passer par history et push. Voir la dernière vidéo sur react router 4.
-// Ou alors on s'en fout ? Ou je remets la solution dégueulasse pour que ça marche au moins avec les boutons.

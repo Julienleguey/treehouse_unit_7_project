@@ -40,6 +40,3 @@ export default class Search extends Component {
     );
   }
 }
-
-
-// Il faut commencer par faire fonctionner ça proprement ! Re-regarder la vidéo ou les vidéos concernées !
